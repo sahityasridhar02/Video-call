@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidential Invitation</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f5f5f5;
+    text-align:center;
+    overflow:hidden;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+h1{
+    margin-bottom:10px;
+}
+
+.status{
+    margin-bottom:30px;
+    font-size:1.1rem;
+}
+
+.main-text{
+    font-size:1.2rem;
+    line-height:1.9;
+    margin:40px 0;
+}
+
+.question{
+    font-size:1.5rem;
+    font-weight:bold;
+    margin-top:30px;
+}
+
+.buttons{
+    margin-top:40px;
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:15px 25px;
+    font-size:1rem;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+#yesBtn{
+    margin-right:20px;
+}
+
+#message{
+    margin-top:30px;
+    min-height:40px;
+    font-size:1.1rem;
+    font-weight:bold;
+}
+
+#noBtn{
+    position:absolute;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🔒 CONFIDENTIAL INVITATION 🔒</h1>
+
+    <div id="recipient" class="status"></div>
+
+    <div class="main-text">
+        After countless unread messages,
+        <br><br>
+
+        multiple failed attempts at planning,
+        <br><br>
+
+        and several rounds of
+        <i>"let's decide later"</i>...
+        <br><br>
+
+        we have finally arrived at this moment.
+    </div>
+
+    <div class="question">
+        Will you join the video call on Saturday?
+    </div>
+
+    <div class="buttons">
+        <button id="yesBtn" onclick="acceptInvite()">
+            Wouldn't miss it 😎
+        </button>
+
+        <button id="noBtn" onclick="moveNoButton()">
+            Maybe not 😒
+        </button>
+    </div>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name") || "Esteemed Member";
+
+document.getElementById("recipient").innerHTML = `
+Recipient: <b>${name}</b><br>
+Status: Awaiting Response
+`;
+
+const responses = [
+    "Hmm...",
+    "Are you sure?",
+    "The gang misses you 🥺",
+    "It's literally one video call.",
+    "We're taking this personally now.",
+    "Remember when we spent hours talking nonsense instead of studying?",
+    "Very suspicious behaviour.",
+    "Your friendship attendance is falling.",
+    "Last chance...",
+    "No has been removed due to excessive negativity."
+];
+
+let count = 0;
+let yesScale = 1;
+
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const message = document.getElementById("message");
+
+noBtn.style.left = "55%";
+noBtn.style.top = "500px";
+
+function moveNoButton(){
+
+    if(count < responses.length){
+        message.innerText = responses[count];
+    }
+
+    count++;
+
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 120;
+
+    noBtn.style.left =
+        Math.random() * maxX + "px";
+
+    noBtn.style.top =
+        Math.random() * maxY + "px";
+
+    const noScale =
+        Math.max(0.25, 1 - count * 0.1);
+
+    noBtn.style.transform =
+        `scale(${noScale})`;
+
+    yesScale += 0.12;
+
+    yesBtn.style.transform =
+        `scale(${yesScale})`;
+
+    if(count >= responses.length){
+        noBtn.style.display = "none";
+    }
+}
+
+function acceptInvite(){
+
+    document.body.innerHTML = `
+    <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        padding:20px;
+        font-family:Arial,sans-serif;
+    ">
+
+        <h1>🎉 ATTENDANCE CONFIRMED 🎉</h1>
+
+        <p style="font-size:1.2rem;">
+            Recipient: <b>${name}</b>
+        </p>
+
+        <p style="font-size:1.2rem;">
+            Status: Accepted ✅
+        </p>
+
+        <br>
+
+        <h2>
+            A legendary gathering is now one step closer.
+        </h2>
+
+        <p style="font-size:1.2rem;">
+            See you on Saturday.
+        </p>
+
+        <p style="font-size:1.2rem;">
+            Excuses will no longer be accepted. 😌
+        </p>
+
+        <br>
+
+        <hr style="width:300px;">
+
+        <p style="font-size:1.1rem;">
+            Please send a screenshot of this page to the group chat as proof of attendance.
+        </p>
+
+    </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
