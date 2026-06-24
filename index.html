@@ -1,12 +1,12 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confidential Invitation</title>
+<title>Saturday Video Call Summons</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -25,7 +25,7 @@ body{
     background-size:400% 400%;
     animation:gradientMove 12s ease infinite;
     text-align:center;
-    overflow:hidden;
+    padding:20px;
 }
 
 @keyframes gradientMove{
@@ -36,7 +36,7 @@ body{
 
 .container{
     max-width:800px;
-    margin:40px auto;
+    margin:20px auto;
     padding:40px;
     background:rgba(255,255,255,0.95);
     border-radius:30px;
@@ -55,8 +55,8 @@ body{
 
 h1{
     color:#7c3aed;
-    font-size:2.5rem;
-    margin-bottom:10px;
+    font-size:2.3rem;
+    margin-bottom:15px;
 }
 
 .status{
@@ -74,13 +74,18 @@ h1{
 
 .question{
     margin-top:35px;
-    font-size:1.6rem;
+    font-size:1.5rem;
     font-weight:bold;
     color:#7c3aed;
 }
 
 .buttons{
     margin-top:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
 button{
@@ -96,13 +101,11 @@ button{
 #yesBtn{
     background:#22c55e;
     color:white;
-    margin-right:20px;
 }
 
 #noBtn{
     background:#ff6b6b;
     color:white;
-    position:absolute;
 }
 
 #message{
@@ -112,7 +115,6 @@ button{
     font-weight:bold;
     font-size:1.1rem;
 }
-
 </style>
 </head>
 
@@ -193,15 +195,18 @@ const responses = [
 
 let count = 0;
 let yesScale = 1;
+let moved = false;
 
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const message = document.getElementById("message");
 
-noBtn.style.left = "58%";
-noBtn.style.top = "520px";
-
 function moveNoButton(){
+
+    if(!moved){
+        noBtn.style.position = "fixed";
+        moved = true;
+    }
 
     if(count < responses.length){
         message.innerText = responses[count];
@@ -210,24 +215,16 @@ function moveNoButton(){
     count++;
 
     const maxX = window.innerWidth - 180;
-    const maxY = window.innerHeight - 120;
+    const maxY = window.innerHeight - 100;
 
-    noBtn.style.left =
-        Math.random() * maxX + "px";
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
 
-    noBtn.style.top =
-        Math.random() * maxY + "px";
+    const noScale = Math.max(0.3, 1 - count * 0.08);
+    noBtn.style.transform = `scale(${noScale})`;
 
-    const noScale =
-        Math.max(0.15, 1 - count * 0.1);
-
-    noBtn.style.transform =
-        `scale(${noScale})`;
-
-    yesScale += 0.18;
-
-    yesBtn.style.transform =
-        `scale(${yesScale})`;
+    yesScale = Math.min(2.5, yesScale + 0.08);
+    yesBtn.style.transform = `scale(${yesScale})`;
 
     if(count >= responses.length){
         noBtn.style.display = "none";
@@ -253,36 +250,22 @@ function acceptInvite(){
             #6bcBef,
             #a66cff
         );
-        background-size:400% 400%;
-        animation:gradientMove 12s ease infinite;
         color:white;
     ">
 
-        <h1 style="
-            color:white;
-            font-size:3rem;
-        ">
+        <h1 style="font-size:3rem;">
             🎉 ATTENDANCE CONFIRMED 🎉
         </h1>
 
-        <p style="
-            font-size:1.3rem;
-            font-weight:bold;
-        ">
+        <p style="font-size:1.3rem;font-weight:bold;">
             Recipient: ${name}
         </p>
 
-        <p style="
-            font-size:1.2rem;
-            font-weight:bold;
-        ">
+        <p style="font-size:1.2rem;font-weight:bold;">
             Status: Accepted ✅
         </p>
 
-        <h2 style="
-            max-width:700px;
-            margin-top:20px;
-        ">
+        <h2 style="max-width:700px;">
             A legendary gathering is now one step closer.
         </h2>
 
@@ -313,3 +296,4 @@ function acceptInvite(){
 
 </body>
 </html>
+```
