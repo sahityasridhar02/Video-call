@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,117 +6,118 @@
 <title>Saturday Video Call Summons</title>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    min-height:100vh;
-    font-family:'Trebuchet MS', Arial, sans-serif;
-    background:linear-gradient(
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background: linear-gradient(
         135deg,
         #ff6b6b,
         #ffd93d,
         #6bcBef,
         #a66cff
     );
-    background-size:400% 400%;
-    animation:gradientMove 12s ease infinite;
-    text-align:center;
-    padding:20px;
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-@keyframes gradientMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.container{
-    max-width:800px;
-    margin:20px auto;
-    padding:40px;
-    background:rgba(255,255,255,0.95);
-    border-radius:30px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+.container {
+    background: rgba(255,255,255,0.95);
+    padding: 35px;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 750px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
-.badge{
-    display:inline-block;
-    background:#ff4d8d;
-    color:white;
-    padding:10px 18px;
-    border-radius:30px;
-    margin-bottom:15px;
-    font-weight:bold;
+.badge {
+    display: inline-block;
+    background: #ff4d8d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-h1{
-    color:#7c3aed;
-    font-size:2.3rem;
-    margin-bottom:15px;
+h1 {
+    color: #7c3aed;
+    margin-bottom: 15px;
+    font-size: 2.4rem;
 }
 
-.status{
-    color:#ff4d8d;
-    font-weight:bold;
-    margin-bottom:30px;
-    line-height:1.8;
+.status {
+    color: #ff4d8d;
+    font-weight: bold;
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
-.main-text{
-    font-size:1.2rem;
-    line-height:1.9;
-    color:#374151;
+.main-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 30px;
 }
 
-.question{
-    margin-top:35px;
-    font-size:1.5rem;
-    font-weight:bold;
-    color:#7c3aed;
+.question {
+    color: #7c3aed;
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
-.buttons{
-    margin-top:40px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-button{
-    border:none;
-    border-radius:15px;
-    padding:15px 28px;
-    font-size:1rem;
-    font-weight:bold;
-    cursor:pointer;
-    transition:all 0.2s ease;
+button {
+    border: none;
+    border-radius: 15px;
+    padding: 15px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-#yesBtn{
-    background:#22c55e;
-    color:white;
+#yesBtn {
+    background: #22c55e;
+    color: white;
 }
 
-#noBtn{
-    background:#ff6b6b;
-    color:white;
+#noBtn {
+    background: #ff6b6b;
+    color: white;
 }
 
-#message{
-    margin-top:35px;
-    min-height:40px;
-    color:#7c3aed;
-    font-weight:bold;
-    font-size:1.1rem;
+#message {
+    margin-top: 25px;
+    min-height: 35px;
+    color: #7c3aed;
+    font-weight: bold;
 }
+
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -130,15 +130,10 @@ button{
 
     <div class="main-text">
         After countless unread messages,
-        <br><br>
-
-        multiple failed attempts at planning,
-        <br><br>
-
+        failed plans,
         and several rounds of
         <i>"let's decide later"</i>...
         <br><br>
-
         we have finally arrived at this moment.
     </div>
 
@@ -165,19 +160,9 @@ button{
 const params = new URLSearchParams(window.location.search);
 const name = params.get("name") || "Valued Member of the Gang";
 
-const statuses = [
-    "Awaiting Response",
-    "Critical Decision Pending",
-    "Saturday Participation Assessment",
-    "Friendship Integrity Check"
-];
-
-const randomStatus =
-    statuses[Math.floor(Math.random() * statuses.length)];
-
 document.getElementById("recipient").innerHTML = `
 Recipient: <b>${name}</b><br>
-Status: ${randomStatus}
+Status: Friendship Integrity Check
 `;
 
 const responses = [
@@ -185,12 +170,10 @@ const responses = [
     "Are you sure?",
     "The gang misses you 🥺",
     "It's literally one video call.",
+    "Suspicious behaviour detected.",
     "We're taking this personally now.",
-    "Remember when we spent hours talking nonsense instead of studying?",
-    "Very suspicious behaviour.",
-    "Your friendship attendance is falling.",
     "Last chance...",
-    "No has been removed due to excessive negativity."
+    "No is slowly losing its privileges."
 ];
 
 let count = 0;
@@ -201,14 +184,14 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const message = document.getElementById("message");
 
-function moveNoButton(){
+function moveNoButton() {
 
-    if(!moved){
+    if (!moved) {
         noBtn.style.position = "fixed";
         moved = true;
     }
 
-    if(count < responses.length){
+    if (count < responses.length) {
         message.innerText = responses[count];
     }
 
@@ -220,18 +203,15 @@ function moveNoButton(){
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
 
-    const noScale = Math.max(0.3, 1 - count * 0.08);
-    noBtn.style.transform = `scale(${noScale})`;
-
-    yesScale = Math.min(2.5, yesScale + 0.08);
+    yesScale = Math.min(2, yesScale + 0.08);
     yesBtn.style.transform = `scale(${yesScale})`;
 
-    if(count >= responses.length){
+    if (count >= responses.length) {
         noBtn.style.display = "none";
     }
 }
 
-function acceptInvite(){
+function acceptInvite() {
 
     document.body.innerHTML = `
     <div style="
@@ -241,16 +221,9 @@ function acceptInvite(){
         justify-content:center;
         align-items:center;
         text-align:center;
-        padding:30px;
-        font-family:'Trebuchet MS', Arial, sans-serif;
-        background:linear-gradient(
-            135deg,
-            #ff6b6b,
-            #ffd93d,
-            #6bcBef,
-            #a66cff
-        );
+        background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcBef,#a66cff);
         color:white;
+        padding:30px;
     ">
 
         <h1 style="font-size:3rem;">
@@ -261,11 +234,11 @@ function acceptInvite(){
             Recipient: ${name}
         </p>
 
-        <p style="font-size:1.2rem;font-weight:bold;">
+        <p style="font-size:1.2rem;">
             Status: Accepted ✅
         </p>
 
-        <h2 style="max-width:700px;">
+        <h2>
             A legendary gathering is now one step closer.
         </h2>
 
@@ -277,16 +250,14 @@ function acceptInvite(){
             Excuses will no longer be accepted. 😌
         </p>
 
-        <br>
-
-        <p style="
-            font-size:1.1rem;
+        <div style="
+            margin-top:20px;
             background:rgba(255,255,255,0.2);
             padding:15px 25px;
             border-radius:15px;
         ">
             Please send a screenshot of this page to the group chat as proof of attendance.
-        </p>
+        </div>
 
     </div>
     `;
@@ -296,4 +267,3 @@ function acceptInvite(){
 
 </body>
 </html>
-```
